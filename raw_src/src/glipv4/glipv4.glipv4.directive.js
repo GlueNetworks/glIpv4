@@ -19,6 +19,11 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
         var elementValue;
         var elementSegmentSeperator;
 
+        scope.api = scope.api || {};
+        scope.api._data = {};
+        scope.api._data.capsLocked = false;
+        scope.api._data.numberMouseOverSpinner = false;
+
         var classError = "gl-textfield-error";
         var classLabel = "gl-textfield-view-label";
         var classValue = "gl-textfield-view-value";
@@ -28,17 +33,19 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
         scope.api3 = {};
         scope.api4 = {};
 
+        scope.api._data.name = angular.isUndefined(scope.settings.name) ? undefined : scope.settings.name;
+
         var inputEvents = ['focus','blur','change','keypress','input','keydown'];
-        scope.settings1 = {name:'ipv4-seg-1', type:'number', numberSpinner:false, emitEvents:inputEvents,onKeyUp:onKeyUp1,onKeyDown:onKeyDown1};
-        scope.settings2 = {nane:'ipv4-seg-2', type:'number', numberSpinner:false, emitEvents:inputEvents,onKeyUp:onKeyUp2,onKeyDown:onKeyDown2};
-        scope.settings3 = {name:'ipv4-seg-3', type:'number', numberSpinner:false, emitEvents:inputEvents,onKeyUp:onKeyUp3,onKeyDown:onKeyDown3};
-        scope.settings4 = {name:'ipv4-seg-4', type:'number', numberSpinner:false, emitEvents:inputEvents,onKeyUp:onKeyUp4,onKeyDown:onKeyDown4};
+        scope.settings1 = {name:'gl-'+scope.api._data.name+'-ipv4-seg-1', type:'number', numberSpinner:false, onKeyUp:onKeyUp1, onKeyDown:onKeyDown1};
+        scope.settings2 = {nane:'gl-'+scope.api._data.name+'-ipv4-seg-2', type:'number', numberSpinner:false, onKeyUp:onKeyUp2, onKeyDown:onKeyDown2};
+        scope.settings3 = {name:'gl-'+scope.api._data.name+'-ipv4-seg-3', type:'number', numberSpinner:false, onKeyUp:onKeyUp3, onKeyDown:onKeyDown3};
+        scope.settings4 = {name:'gl-'+scope.api._data.name+'-ipv4-seg-4', type:'number', numberSpinner:false, onKeyUp:onKeyUp4, onKeyDown:onKeyDown4};
 
         var templateInputs = [
-          '<gl-textfield api="api1" settings="settings1" >',
-          '<gl-textfield api="api2" settings="settings2" >',
-          '<gl-textfield api="api3" settings="settings3" >',
-          '<gl-textfield api="api4" settings="settings4" >'
+          '<gl-textfield class="gl-ipv4-1" api="api1" settings="settings1" >',
+          '<gl-textfield class="gl-ipv4-2" api="api2" settings="settings2" >',
+          '<gl-textfield class="gl-ipv4-3" api="api3" settings="settings3" >',
+          '<gl-textfield class="gl-ipv4-4" api="api4" settings="settings4" >'
         ];
 
         var templateInputsContainer = '<div class="gl-ipv4-inputs"></div>';
@@ -47,25 +54,21 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
         var templateValue = '<p class="'+classValue+'"></p>';
         var templateSeperator = '<span class="gl-ipv4-segment-seperator">.</span>';
 
-        scope.api = scope.api || {};
-        scope.api._data = {};
-        scope.api._data.capsLocked = false;
-        scope.api._data.numberMouseOverSpinner = false;
 
         // MAP SETTINGS
+        console.log('scope.settings.value'); console.log(scope.settings.value);
+
         if(!angular.isUndefined(scope.settings.value)){
           scope.api._data.ipSegments = scope.settings.value.split(".");
         }else{
           scope.api._data.ipSegments = [];
         }
         scope.api._data.valid = angular.isUndefined(scope.settings.valid) ? true : scope.settings.valid;
-        scope.api._data.name = angular.isUndefined(scope.settings.name) ? undefined : scope.settings.name;
         scope.api._data.label = angular.isUndefined(scope.settings.label) ? undefined : scope.settings.label;
         scope.api._data.disabled = angular.isUndefined(scope.settings.disabled) ? false : scope.settings.disabled;
         scope.api._data.placeholder = angular.isUndefined(scope.settings.placeholder) ? undefined : scope.settings.placeholder;
         scope.api._data.error = angular.isUndefined(scope.settings.error) ? undefined : scope.settings.error;
         scope.api._data.editable = angular.isUndefined(scope.settings.editable) ? true : scope.settings.editable;
-        scope.api._data.emitEvents = angular.isUndefined(scope.settings.emitEvents) ? inputEvents : scope.settings.emitEvents;
 
         scope.api.setInvalid = function(msg){
           scope.api._data.valid = false;
@@ -92,35 +95,33 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
 
         scope.api.setValue = function(val){
 
-          scope.api._data.ipSegments = val.split(".");
+          if(angular.isUndefined(val) || (angular.isString(val) && val.length == 0)){
 
-          if(!angular.isUndefined(scope.api._data.ipSegments)){
+            scope.api1.setValue();
+            scope.api2.setValue();
+            scope.api3.setValue();
+            scope.api4.setValue();
 
-            if(!angular.isUndefined(parseInt(scope.api._data.ipSegments[0]))){
-              scope.api1.setValue(parseInt(scope.api._data.ipSegments[0]));
-            }else{
-              scope.api1.setValue(undefined);
-            }
+          }else{
 
-            if(!angular.isUndefined(parseInt(scope.api._data.ipSegments[1]))){
-              scope.api2.setValue(parseInt(scope.api._data.ipSegments[1]));
-            }else{
-              scope.api2.setValue(undefined);
-            }
-
-            if(!angular.isUndefined(parseInt(scope.api._data.ipSegments[2]))){
-              scope.api3.setValue(parseInt(scope.api._data.ipSegments[2]));
-            }else{
-              scope.api3.setValue(undefined);
-            }
-
-            if(!angular.isUndefined(parseInt(scope.api._data.ipSegments[3]))){
-              scope.api4.setValue(parseInt(scope.api._data.ipSegments[3]));
-            }else{
-              scope.api4.setValue(undefined);
+            scope.api._data.ipSegments = val.split(".");
+            if(!angular.isUndefined(scope.api._data.ipSegments)){
+              if(!angular.isUndefined(parseInt(scope.api._data.ipSegments[0]))){
+                scope.api1.setValue(parseInt(scope.api._data.ipSegments[0]));
+              }
+              if(!angular.isUndefined(parseInt(scope.api._data.ipSegments[1]))){
+                scope.api2.setValue(parseInt(scope.api._data.ipSegments[1]));
+              }
+              if(!angular.isUndefined(parseInt(scope.api._data.ipSegments[2]))){
+                scope.api3.setValue(parseInt(scope.api._data.ipSegments[2]));
+              }
+              if(!angular.isUndefined(parseInt(scope.api._data.ipSegments[3]))){
+                scope.api4.setValue(parseInt(scope.api._data.ipSegments[3]));
+              }
             }
           }
 
+          // update view  mode
           if(!angular.isUndefined(elementValue)){
             elementValue.html(scope.api.getValue());
           }
@@ -194,18 +195,22 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
         }
 
         var setEditMode = function(){
+
           scope.api._data.editable = true;
           element.children().remove();
           element.append(getElementInputs());
-          //scope.api.setValue(scope.api.setValue(scope.api.getValue()))
+
           var v = scope.api.getValue();
           scope.api.setValue(v);
+
+          // init validity
           if(scope.api._data.valid){
             scope.api.setValid();
           }else{
             var errMsg = angular.isString(scope.api._data.error) ? scope.api._data.error : undefined;
             scope.api.setInvalid(errMsg);
           }
+
           errorMsgCheck();
         }
 
@@ -226,7 +231,6 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
             elementInputs[1].find('input').focus();
           }
         }
-
         function onKeyDown2(evt){
           if(evt.keyCode == 190){
             evt.preventDefault();
@@ -239,13 +243,13 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
             elementInputs[3].find('input').focus();
           }
         }
-
         function onKeyDown4(evt){
           if(evt.keyCode == 190){
             evt.preventDefault();
           }
         }
 
+        // set segment model values
         function onKeyUp1(evt){
           scope.api._data.ipSegments[0] = scope.api1.getValue();;
         }
