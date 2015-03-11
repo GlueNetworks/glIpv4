@@ -35,7 +35,6 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
 
         scope.api._data.name = angular.isUndefined(scope.settings.name) ? undefined : scope.settings.name;
 
-        var inputEvents = ['focus','blur','change','keypress','input','keydown'];
         scope.settings1 = {name:'gl-'+scope.api._data.name+'-ipv4-seg-1', type:'number', numberSpinner:false, onKeyUp:onKeyUp1, onKeyDown:onKeyDown1};
         scope.settings2 = {nane:'gl-'+scope.api._data.name+'-ipv4-seg-2', type:'number', numberSpinner:false, onKeyUp:onKeyUp2, onKeyDown:onKeyDown2};
         scope.settings3 = {name:'gl-'+scope.api._data.name+'-ipv4-seg-3', type:'number', numberSpinner:false, onKeyUp:onKeyUp3, onKeyDown:onKeyDown3};
@@ -56,8 +55,6 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
 
 
         // MAP SETTINGS
-        console.log('scope.settings.value'); console.log(scope.settings.value);
-
         if(!angular.isUndefined(scope.settings.value)){
           scope.api._data.ipSegments = scope.settings.value.split(".");
         }else{

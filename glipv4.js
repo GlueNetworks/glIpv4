@@ -1,5 +1,5 @@
 /*! 
-  glIpv4 v(0.0.4) 
+  glIpv4 v(0.0.5) 
   (c) 2013-2015
   https://gluenetworks.kilnhg.com/Code/Web-Development
   Release Date: 2015-03-11 
@@ -44,7 +44,7 @@ angular.module("glIpv4", [ "glTextfield" ]), angular.module("glIpv4").directive(
             scope.api = scope.api || {}, scope.api._data = {}, scope.api._data.capsLocked = !1, 
             scope.api._data.numberMouseOverSpinner = !1;
             var classError = "gl-textfield-error", classLabel = "gl-textfield-view-label", classValue = "gl-textfield-view-value";
-            scope.api1 = {}, scope.api2 = {}, scope.api3 = {}, scope.api4 = {}, scope.api._data.name = angular.isUndefined(scope.settings.name) ? void 0 : scope.settings.name;
+            scope.api1 = {}, scope.api2 = {}, scope.api3 = {}, scope.api4 = {}, scope.api._data.name = angular.isUndefined(scope.settings.name) ? void 0 : scope.settings.name, 
             scope.settings1 = {
                 name: "gl-" + scope.api._data.name + "-ipv4-seg-1",
                 type: "number",
@@ -72,7 +72,7 @@ angular.module("glIpv4", [ "glTextfield" ]), angular.module("glIpv4").directive(
             };
             var templateInputs = [ '<gl-textfield class="gl-ipv4-1" api="api1" settings="settings1" >', '<gl-textfield class="gl-ipv4-2" api="api2" settings="settings2" >', '<gl-textfield class="gl-ipv4-3" api="api3" settings="settings3" >', '<gl-textfield class="gl-ipv4-4" api="api4" settings="settings4" >' ], templateInputsContainer = '<div class="gl-ipv4-inputs"></div>', templateError = '<p class="' + classError + '">{{api._data.error}}</p>', templateLabel = '<label class="' + classLabel + '">{{api._data.label}}</label>', templateValue = '<p class="' + classValue + '"></p>', templateSeperator = '<span class="gl-ipv4-segment-seperator">.</span>';
             // MAP SETTINGS
-            console.log("scope.settings.value"), console.log(scope.settings.value), scope.api._data.ipSegments = angular.isUndefined(scope.settings.value) ? [] : scope.settings.value.split("."), 
+            scope.api._data.ipSegments = angular.isUndefined(scope.settings.value) ? [] : scope.settings.value.split("."), 
             scope.api._data.valid = angular.isUndefined(scope.settings.valid) ? !0 : scope.settings.valid, 
             scope.api._data.label = angular.isUndefined(scope.settings.label) ? void 0 : scope.settings.label, 
             scope.api._data.disabled = angular.isUndefined(scope.settings.disabled) ? !1 : scope.settings.disabled, 
