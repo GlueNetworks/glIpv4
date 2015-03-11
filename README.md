@@ -1,6 +1,7 @@
-# GLTextfield
+# Glue IPv4 Control
 ## Overview
-An interface to both view and edit a single line of text. It provides both an editable input field as well as a static visual view.
+An interface to both view and edit an ipv4 address. It provides both an editable input field as well as a static visual view.
+Pressing both tab and/or period will move focus to the next input field for convenience.
 
 ## States
 
@@ -26,10 +27,6 @@ An interface to both view and edit a single line of text. It provides both an ed
 * valid - true/false
 * error - init with an error message. requires valid to be false in order to be displayed
 * disabled
-* onKeyDown - define a callback event for keydown
-* onKeyPress - define a callback event for keypress
-* onKeyUp - define a callback event for keyup
-* onInput - define a callback event for input
 * emitEvents - accepts an array of string event names to be emitted. 
   Events are emitted with the emit name formatted as: <settings.name>-<eventanme>  eg. "firstname-keypress"
 
@@ -43,10 +40,7 @@ An interface to both view and edit a single line of text. It provides both an ed
       placeholder: "name",
       value: "John",
       invalid: false,
-      disabled: false,
-      onKeyDown: function(evt){ 
-        evt.preventDefault();  
-      }
+      disabled: false
     };
 
 ## API Methods
