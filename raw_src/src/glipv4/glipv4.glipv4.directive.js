@@ -264,16 +264,8 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
 
 
         // INIT
-        if(angular.isString(scope.settings.value)){
-          scope.api.setValue(scope.api.setValue(scope.settings.value))
-        }
-
         if(angular.isString(scope.api._data.placeholder)){
           scope.settings1.placeholder = scope.api._data.placeholder;
-        }
-
-        if(angular.isString(scope.settings.value)){
-          scope.api.setValue(scope.api.setValue(scope.settings.value))
         }
 
         if (!angular.isUndefined(scope.settings.view) && scope.settings.view == true){

@@ -1,5 +1,5 @@
 /*! 
-  glIpv4 v(0.0.2) 
+  glIpv4 v(0.0.3) 
   (c) 2013-2015
   https://gluenetworks.kilnhg.com/Code/Web-Development
   Release Date: 2015-03-10 
@@ -143,9 +143,7 @@ angular.module("glIpv4", [ "glTextfield" ]), angular.module("glIpv4").directive(
                 element.append(elementError));
             };
             // INIT
-            angular.isString(scope.settings.value) && scope.api.setValue(scope.api.setValue(scope.settings.value)), 
             angular.isString(scope.api._data.placeholder) && (scope.settings1.placeholder = scope.api._data.placeholder), 
-            angular.isString(scope.settings.value) && scope.api.setValue(scope.api.setValue(scope.settings.value)), 
             angular.isUndefined(scope.settings.view) || 1 != scope.settings.view ? setEditMode() : setViewMode();
         }
     };
