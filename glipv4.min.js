@@ -1,5 +1,5 @@
 /*! 
-  glIpv4 v(0.0.1) 
+  glIpv4 v(0.0.2) 
   (c) 2013-2015
   https://gluenetworks.kilnhg.com/Code/Web-Development
   Release Date: 2015-03-10 
