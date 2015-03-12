@@ -51,7 +51,7 @@ angular.module('glIpv4').directive('glIpv4', ["$compile", "$timeout", function (
         var templateError = '<p class="'+classError+'">{{api._data.error}}</p>';
         var templateLabel = '<label class="'+classLabel+'">{{api._data.label}}</label>';
         var templateValue = '<p class="'+classValue+'"></p>';
-        var templateSeperator = '<span class="gl-ipv4-segment-seperator">.</span>';
+        var templateSeperator = '<span class="gl-ipv4-segment-separator">.</span>';
 
 
         // MAP SETTINGS
