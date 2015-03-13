@@ -1,6 +1,6 @@
 {
   "name": "glIpv4",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "dependencies": {
     "GlueJasmineMatchers": "GlueNetworks/GlueJasmineMatchers#0.0.2",
     "angular": "1.3.13",
@@ -19,6 +19,6 @@
   },
   "devDependencies": {},
   "meta": {
-    "changesetId": "d5d8e9cd1614dcab42508ad29cf2a38a53570afe"
+    "changesetId": "03d8d53bf842d6157830f18268f589031e4a5541"
   }
 }
