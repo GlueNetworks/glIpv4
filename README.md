@@ -22,7 +22,7 @@ Pressing both tab and/or period will move focus to the next input field for conv
 * name - required by angular forms
 * editable
 * label - used in all but password types
-* placeholder
+* placeholder - sets the first segment placeholder
 * value
 * valid - true/false
 * error - init with an error message. requires valid to be false in order to be displayed
@@ -49,8 +49,6 @@ Pressing both tab and/or period will move focus to the next input field for conv
 * view
 * setLabel
 * getLabel
-* setPlaceholder
-* getPlaceholder
 * setValue
 * getValue
 * setInvalid
@@ -65,8 +63,6 @@ Pressing both tab and/or period will move focus to the next input field for conv
     // Api Method call examples
     myApi.disable();     // Disabled the input field leaving text visible but not editable.
     myApi.enable();      // Enables editing of the input field
-    myApi.setPlaceholder("My Placeholder");  // sets the input field placeholder text
-    myApi.getPlaceholder();   // returns "My Placeholder"
     myApi.setValue("abc");  // Sets the value of the input field
     myApi.getValue();       // returns "abc", the value of the input field
     myApi.setInvalid();   // adds the "gl-invalid" input class.

@@ -1,1 +1,1 @@
-angular.module('glIpv4', ['glTextfield']);
+angular.module('glIpv4', ['glSegmentedInput']);
